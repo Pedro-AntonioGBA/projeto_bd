@@ -1,0 +1,5 @@
+INDEX VERSION 1.134+/home/vboxuser/Downloads/academico-web-main (2)/src/.metadata/.plugins/org.eclipse.jdt.core
+2509971341.index
+1817122630.index
+1865797976.index
+2018372985.index

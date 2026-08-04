@@ -1,0 +1,98 @@
+package br.edu.ifpb.bd.projeto.dao;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.stereotype.Repository;
+import br.edu.ifpb.bd.projeto.model.Ingrediente;
+import br.edu.ifpb.bd.projeto.model.Fornecedor;
+import br.edu.ifpb.bd.projeto.util.ConnectionFactory;
+
+@Repository
+public class IngredienteDAO {
+    
+    public void salvar(Ingrediente ingrediente) throws Exception {
+        String sql = "INSERT INTO ingredientes " +
+        "(nome, valor, disponibilidade, id_fornecedor) " +
+        "VALUES (?, ?, ?, ?)";
+        try (Connection c = ConnectionFactory.getConnection();
+             PreparedStatement ps = c.prepareStatement(sql)) {
+            ps.setString(1, ingrediente.getNome());
+            ps.setFloat(2, ingrediente.getValor());
+            ps.setBoolean(3, ingrediente.getDisponibilidade());
+            ps.setInt(4, ingrediente.getIdFornecedor());
+            ps.execute();
+        }
+    }
+
+    
+    
+    public List<Ingrediente> listar() throws Exception {
+        List<Ingrediente> lista = new ArrayList<>();
+        String sql = "SELECT * FROM ingredientes";
+        try (Connection c = ConnectionFactory.getConnection();
+             Statement st = c.createStatement();
+             ResultSet rs = st.executeQuery(sql)) {
+             while (rs.next()) {
+                 lista.add(new Ingrediente(
+              		   rs.getInt("id_ingrediente"),
+                         rs.getString("nome"),
+                         rs.getFloat("valor"),
+                         rs.getBoolean("disponibilidade"),
+                         rs.getInt("id_fornecedor")
+                 ));
+           }
+        }
+        return lista;
+    }
+
+    
+    public void atualizar(Ingrediente ingrediente) throws Exception {
+        String sql =
+          "UPDATE ingredientes SET nome=?, valor=?, disponibilidade=?, id_fornecedor=? " + 
+          "WHERE id_ingrediente=?";
+        try (Connection c = ConnectionFactory.getConnection();
+             PreparedStatement ps = c.prepareStatement(sql)) {
+            ps.setString(1, ingrediente.getNome());
+            ps.setFloat(2, ingrediente.getValor());
+            ps.setBoolean(3, ingrediente.getDisponibilidade());
+            ps.setInt(4, ingrediente.getIdFornecedor());
+            ps.setInt(5, ingrediente.getIdIngrediente());
+            ps.execute();
+        }
+    }
+
+
+    public Ingrediente buscar(Integer id) throws Exception {
+        String sql = "SELECT * FROM ingredientes WHERE id_ingrediente=?";
+        try (Connection c = ConnectionFactory.getConnection();
+             PreparedStatement ps = c.prepareStatement(sql)) {
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                Ingrediente a = new Ingrediente();
+                a.setIdIngrediente(id);
+                a.setNome(rs.getString("nome"));
+                a.setValor(rs.getFloat("valor"));
+                a.setDisponibilidade(rs.getBoolean("Disponibilidade"));
+                a.setIdFornecedor(rs.getInt("id_fornecedor"));
+                return a;
+            }
+        }
+        return null;
+    }
+
+
+    public void excluir(Integer id) throws Exception {
+        String sql = "DELETE FROM ingredientes WHERE id_ingrediente=?";
+        try (Connection c = ConnectionFactory.getConnection();
+             PreparedStatement ps = c.prepareStatement(sql)) {
+            ps.setInt(1, id);
+            ps.execute();
+        }
+    }
+}

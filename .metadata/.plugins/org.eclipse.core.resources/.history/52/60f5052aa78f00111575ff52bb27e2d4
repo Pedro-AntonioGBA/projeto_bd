@@ -1,0 +1,16 @@
+package br.edu.ifpb.bd.projeto.dto;
+
+public class FornecedorTotalDTO {
+    private String fornecedor;
+    private Integer totalIngredientes;
+
+    public FornecedorTotalDTO(String fornecedor, Integer totalIngredientes) {
+        this.fornecedor = fornecedor;
+        this.totalIngredientes = totalIngredientes;
+    }
+
+    public String getFornecedor() { return fornecedor; }
+    public void setFornecedor(String fornecedor) { this.fornecedor = fornecedor; }
+    public Integer getTotalIngredientes() { return totalIngredientes; }
+    public void setTotalIngredientes(Integer totalIngredientes) { this.totalIngredientes = totalIngredientes; }
+}

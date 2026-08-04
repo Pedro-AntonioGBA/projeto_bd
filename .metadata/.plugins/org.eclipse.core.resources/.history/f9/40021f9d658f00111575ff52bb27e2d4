@@ -1,0 +1,5 @@
+package br.edu.ifpb.bd.projeto.dao;
+
+public class ClienteDAO {
+
+}

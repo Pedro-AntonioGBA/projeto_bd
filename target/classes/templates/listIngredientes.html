@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listagem de Ingredientes</title>
+    <link th:href="@{/css/estiloPaginaListagem.css}" rel="stylesheet" />
+</head>
+<body>
+    
+    <a href="/" class="estiloBotaoLink">Voltar para Página Inicial</a>
+    <!-- Botão de atalho para cadastrar um novo ingrediente -->
+    <a th:href="@{/ingredientes/novo}" class="estiloBotaoLink" style="margin-left: 10px;">Novo Ingrediente</a>
+
+    <br /><br />
+
+    <!-- Ajustado de *{} para ${} -->
+    <div class="divMensagemSucesso" th:unless="${#strings.isEmpty(mensagemSucesso)}">
+        <span th:text="${mensagemSucesso}"></span>
+    </div>
+
+    <!-- Ajustado de *{} para ${} -->
+    <div class="divMensagemErro" th:unless="${#strings.isEmpty(mensagemErro)}">
+        <span th:text="${mensagemErro}"></span>
+    </div>
+
+    <h2>Listagem de Ingredientes</h2>
+
+    <table class="tabela-listagem">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>Valor (R$)</th>
+                <th>Disponível em Estoque?</th>
+                <th>Fornecedor (ID)</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+
+                <!-- Loop percorrendo a lista de ingredientes -->
+                <tr th:each="ingrediente : ${ingredientes}">
+                    <td th:text="${ingrediente.idIngrediente}"></td>
+                    <td th:text="${ingrediente.nome}"></td>
+                    <td th:text="${ingrediente.valor}"></td>
+                    
+                    <!-- Convertendo o true/false para Sim/Não -->
+                    <td th:text="${ingrediente.disponibilidade ? 'Sim' : 'Não'}"></td>
+                    
+                    <td th:text="${ingrediente.idFornecedor}"></td>
+                    
+                    <!-- Links de ação passando o ID do ingrediente correto -->
+                    <td>
+                        <a th:href="@{'/ingredientes/editar/' + ${ingrediente.idIngrediente}}" class="linkEditar">Editar</a>
+                        &nbsp;
+                        <a th:href="@{'/ingredientes/excluir/' + ${ingrediente.idIngrediente}}" class="linkExcluir">Excluir</a>
+                    </td>
+                </tr>
+            
+        </tbody>
+    </table>
+
+</body>
+</html>

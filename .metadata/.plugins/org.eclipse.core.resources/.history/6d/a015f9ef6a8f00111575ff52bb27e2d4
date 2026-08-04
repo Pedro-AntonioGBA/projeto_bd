@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Relatórios SQL</title>
+    <link th:href="@{/css/estiloPaginaListagem.css}" rel="stylesheet" />
+</head>
+<body>
+    <a href="/" class="estiloBotaoLink">Voltar para Início</a>
+    <br /><br />
+
+    <h2>1) INNER JOIN (Pratos, Ingredientes e Valores)</h2>
+    <table class="tabela-listagem">
+        <thead>
+            <tr>
+                <th>Receita (Prato)</th>
+                <th>Nome do Ingrediente</th>
+                <th>Valor do Ingrediente (R$)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="c : ${consulta1}">
+                <td th:text="${c.receita}"></td>
+                <td th:text="${c.ingrediente}"></td>
+                <td th:text="${c.valor}"></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>2) GROUP BY, COUNT e ORDER BY (Ingredientes por Fornecedor)</h2>
+    <table class="tabela-listagem">
+        <thead>
+            <tr>
+                <th>Fornecedor</th>
+                <th>Total de Ingredientes Ofertados</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="c : ${consulta2}">
+                <td th:text="${c.fornecedor}"></td>
+                <td th:text="${c.totalIngredientes}"></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>3) LEFT JOIN (Clientes e Reservas)</h2>
+    <table class="tabela-listagem">
+        <thead>
+            <tr>
+                <th>Nome do Cliente</th>
+                <th>CPF</th>
+                <th>ID da Reserva</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="c : ${consulta3}">
+                <td th:text="${c.nomeCliente}"></td>
+                <td th:text="${c.cpfCliente}"></td>
+                <!-- Tratamento em Thymeleaf caso seja nulo (LEFT JOIN sem correspondência) -->
+                <td th:text="${c.idReserva == null ? 'Sem reserva ativa' : c.idReserva}"></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>4) SUBCONSULTA (Ingrediente Mais Caro)</h2>
+    <table class="tabela-listagem">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nome do Ingrediente</th>
+                <th>Valor (R$)</th>
+                <th>Disponível em Estoque</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="c : ${consulta4}">
+                <td th:text="${c.idIngrediente}"></td>
+                <td th:text="${c.nome}"></td>
+                <td th:text="${c.valor}"></td>
+                <td th:text="${c.disponibilidade ? 'Sim' : 'Não'}"></td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>

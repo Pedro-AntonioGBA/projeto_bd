@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Fornecedores</title>
+    <link th:href="@{/css/estiloPaginaListagem.css}" rel="stylesheet" />
+</head>
+<body>
+    <a href="/" class="estiloBotaoLink">Voltar para Início</a>
+    <a th:href="@{/fornecedores/novo}" class="estiloBotaoLink">Novo Fornecedor</a>
+    <br><br>
+    
+    <div class="divMensagemSucesso" th:unless="${#strings.isEmpty(mensagemSucesso)}">
+        <span th:text="${mensagemSucesso}"></span>
+    </div>
+    <div class="divMensagemErro" th:unless="${#strings.isEmpty(mensagemErro)}">
+        <span th:text="${mensagemErro}"></span>
+    </div>
+
+    <h2>Listagem de Fornecedores</h2>
+    <table class="tabela-listagem">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>CNPJ</th>
+                <th>Nome</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="f : ${fornecedores}">
+                <td th:text="${f.id}"></td>
+                <td th:text="${f.cnpj}"></td>
+                <td th:text="${f.nome}"></td>
+                <td>
+                    <a th:href="@{'/fornecedores/editar/' + ${f.id}}" class="linkEditar">Editar</a>
+                    <a th:href="@{'/fornecedores/excluir/' + ${f.id}}" class="linkExcluir">Excluir</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>

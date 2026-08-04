@@ -1,0 +1,54 @@
+package br.edu.ifpb.bd.projeto.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import br.edu.ifpb.bd.projeto.dao.PratoDAO;
+import br.edu.ifpb.bd.projeto.dao.FornecedorDAO;
+import br.edu.ifpb.bd.projeto.dao.ClienteDAO;
+import br.edu.ifpb.bd.projeto.dao.IngredienteDAO;
+import br.edu.ifpb.bd.projeto.dao.PedidoDAO;
+import br.edu.ifpb.bd.projeto.dao.MesaDAO;
+
+@Controller
+@RequestMapping("/relatorios")
+public class RelatorioController {
+
+    private final PratoDAO pratoDAO;
+    private final FornecedorDAO fornecedorDAO;
+    private final ClienteDAO clienteDAO;
+    private final IngredienteDAO ingredienteDAO;
+    private final PedidoDAO pedidoDAO;
+    private final MesaDAO mesaDAO;
+
+    public RelatorioController(PratoDAO pratoDAO, FornecedorDAO fornecedorDAO, ClienteDAO clienteDAO, 
+                               IngredienteDAO ingredienteDAO, PedidoDAO pedidoDAO, MesaDAO mesaDAO) {
+        this.pratoDAO = pratoDAO;
+        this.fornecedorDAO = fornecedorDAO;
+        this.clienteDAO = clienteDAO;
+        this.ingredienteDAO = ingredienteDAO;
+        this.pedidoDAO = pedidoDAO;
+        this.mesaDAO = mesaDAO;
+    }
+
+    @GetMapping
+    public String listarRelatorios(Model model) throws Exception {
+        // Requisito 1: Duas consultas INNER JOIN
+        model.addAttribute("req1_1", pratoDAO.listarPratosIngredientes());
+        model.addAttribute("req1_2", pedidoDAO.listarPagamentosFuncionarios());
+        
+        // Requisito 2: Duas consultas JOIN com GROUP BY, Agregação e ORDER BY
+        model.addAttribute("req2_1", fornecedorDAO.listarTotalIngredientes());
+        model.addAttribute("req2_2", mesaDAO.listarArrecadacaoPorMesa());
+        
+        // Requisito 3: Uma consulta LEFT/RIGHT JOIN
+        model.addAttribute("req3", clienteDAO.listarClientesReservas());
+        
+        // Requisito 4: Uma subconsulta ou HAVING
+        model.addAttribute("req4", ingredienteDAO.listarIngredienteMaisCaro());
+        
+        return "relatorios";
+    }
+}

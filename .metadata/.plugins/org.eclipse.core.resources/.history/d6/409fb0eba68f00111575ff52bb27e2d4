@@ -1,0 +1,20 @@
+package br.edu.ifpb.bd.projeto.dto;
+
+public class ClienteReservaDTO {
+    private String nomeCliente;
+    private String cpfCliente;
+    private Integer idReserva;
+
+    public ClienteReservaDTO(String nomeCliente, String cpfCliente, Integer idReserva) {
+        this.nomeCliente = nomeCliente;
+        this.cpfCliente = cpfCliente;
+        this.idReserva = idReserva;
+    }
+
+    public String getNomeCliente() { return nomeCliente; }
+    public void setNomeCliente(String nomeCliente) { this.nomeCliente = nomeCliente; }
+    public String getCpfCliente() { return cpfCliente; }
+    public void setCpfCliente(String cpfCliente) { this.cpfCliente = cpfCliente; }
+    public Integer getIdReserva() { return idReserva; }
+    public void setIdReserva(Integer idReserva) { this.idReserva = idReserva; }
+}

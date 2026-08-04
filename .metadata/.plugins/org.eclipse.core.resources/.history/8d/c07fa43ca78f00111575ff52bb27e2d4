@@ -1,0 +1,20 @@
+package br.edu.ifpb.bd.projeto.dto;
+
+public class PagamentoFuncionarioDTO {
+    private String formaPagamento;
+    private String nomeFuncionario;
+    private String nomeFuncao;
+
+    public PagamentoFuncionarioDTO(String formaPagamento, String nomeFuncionario, String nomeFuncao) {
+        this.formaPagamento = formaPagamento;
+        this.nomeFuncionario = nomeFuncionario;
+        this.nomeFuncao = nomeFuncao;
+    }
+
+    public String getFormaPagamento() { return formaPagamento; }
+    public void setFormaPagamento(String formaPagamento) { this.formaPagamento = formaPagamento; }
+    public String getNomeFuncionario() { return nomeFuncionario; }
+    public void setNomeFuncionario(String nomeFuncionario) { this.nomeFuncionario = nomeFuncionario; }
+    public String getNomeFuncao() { return nomeFuncao; }
+    public void setNomeFuncao(String nomeFuncao) { this.nomeFuncao = nomeFuncao; }
+}

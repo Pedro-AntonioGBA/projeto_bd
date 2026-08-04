@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Excluir Fornecedor</title>
+    <link th:href="@{/css/estiloPaginaForm.css}" rel="stylesheet" />
+</head>
+<body>
+
+    <div class="container">
+        <h2>Exclusão de Fornecedor</h2>
+        
+        <!-- Action alterada para /ingredientes/excluir e objeto para ingrediente -->
+        <form th:action="@{/fornecedores/excluir}" th:object="${fornecedor}" method="post">
+            
+            <!-- Campo oculto importantíssimo referenciando o id do Ingrediente -->
+            <input type="hidden" th:field="*{id}" />
+
+            <!-- Apenas exibição dos dados para o usuário confirmar -->
+            <div class="form-group">
+                <label for="cnpj">CNPJ</label>
+                <span th:text="*{cnpj}"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="nome">Nome</label>
+                <span th:text="*{nome}"></span>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Excluir">
+               
+                <!-- Botão cancelar retornando para a lista de ingredientes -->
+                <a href="/fornecedores">
+                    <input type="button" value="Cancelar">
+                </a>
+            </div>
+
+        </form>
+    </div>
+
+</body>
+</html>

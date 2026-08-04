@@ -1,0 +1,37 @@
+package br.edu.ifpb.bd.projeto.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import br.edu.ifpb.bd.projeto.dao.PratoDAO;
+import br.edu.ifpb.bd.projeto.dao.FornecedorDAO;
+import br.edu.ifpb.bd.projeto.dao.ClienteDAO;
+import br.edu.ifpb.bd.projeto.dao.IngredienteDAO;
+
+@Controller
+@RequestMapping("/relatorios")
+public class RelatorioController {
+
+    private final PratoDAO pratoDAO;
+    private final FornecedorDAO fornecedorDAO;
+    private final ClienteDAO clienteDAO;
+    private final IngredienteDAO ingredienteDAO;
+
+    public RelatorioController(PratoDAO pratoDAO, FornecedorDAO fornecedorDAO, ClienteDAO clienteDAO, IngredienteDAO ingredienteDAO) {
+        this.pratoDAO = pratoDAO;
+        this.fornecedorDAO = fornecedorDAO;
+        this.clienteDAO = clienteDAO;
+        this.ingredienteDAO = ingredienteDAO;
+    }
+
+    @GetMapping
+    public String listarRelatorios(Model model) throws Exception {
+        model.addAttribute("consulta1", pratoDAO.listarPratosIngredientes());
+        model.addAttribute("consulta2", fornecedorDAO.listarTotalIngredientes());
+        model.addAttribute("consulta3", clienteDAO.listarClientesReservas());
+        model.addAttribute("consulta4", ingredienteDAO.listarIngredienteMaisCaro());
+        return "relatorios";
+    }
+}

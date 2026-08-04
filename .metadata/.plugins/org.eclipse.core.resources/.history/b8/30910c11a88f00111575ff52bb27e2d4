@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Relatórios SQL</title>
+    <link th:href="@{/css/estiloPaginaListagem.css}" rel="stylesheet" />
+</head>
+<body>
+    <a href="/" class="estiloBotaoLink">Voltar para Início</a>
+    <br /><br />
+
+    <p>Filtros: Receita LIKE 'Bolo%' e Valor > 5.0 (Tabelas: pratos, ingredientes_prato, ingredientes)</p>
+    <table class="tabela-listagem">
+        <thead>
+            <tr>
+                <th>Receita (Prato)</th>
+                <th>Nome do Ingrediente</th>
+                <th>Valor do Ingrediente (R$)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="c : ${req1_1}">
+                <td th:text="${c.receita}"></td>
+                <td th:text="${c.ingrediente}"></td>
+                <td th:text="${c.valor}"></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <p>Filtros: Nome funcionário LIKE '%Silva%' e Função = 'Caixa' (Tabelas: pagamentos, funcionarios, funcoes)</p>
+    <table class="tabela-listagem">
+        <thead>
+            <tr>
+                <th>Forma de Pagamento</th>
+                <th>Funcionário</th>
+                <th>Função</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="c : ${req1_2}">
+                <td th:text="${c.formaPagamento}"></td>
+                <td th:text="${c.nomeFuncionario}"></td>
+                <td th:text="${c.nomeFuncao}"></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <table class="tabela-listagem">
+        <thead>
+            <tr>
+                <th>Fornecedor</th>
+                <th>Total de Ingredientes Ofertados</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="c : ${req2_1}">
+                <td th:text="${c.fornecedor}"></td>
+                <td th:text="${c.totalIngredientes}"></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <table class="tabela-listagem">
+        <thead>
+            <tr>
+                <th>Nº da Mesa (ID)</th>
+                <th>Valor Total Arrecadado (R$)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="c : ${req2_2}">
+                <td th:text="${c.idMesa}"></td>
+                <td th:text="${c.valorTotal}"></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <p>Filtro: CPF Is Not Null. Tabelas: clientes, reservas.</p>
+    <table class="tabela-listagem">
+        <thead>
+            <tr>
+                <th>Nome do Cliente</th>
+                <th>CPF</th>
+                <th>ID da Reserva</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="c : ${req3}">
+                <td th:text="${c.nomeCliente}"></td>
+                <td th:text="${c.cpfCliente}"></td>
+                <td th:text="${c.idReserva == null ? 'Sem reserva ativa' : c.idReserva}"></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <p>Encontra o ingrediente de maior valor na tabela (MAX).</p>
+    <table class="tabela-listagem">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nome do Ingrediente</th>
+                <th>Valor (R$)</th>
+                <th>Disponível em Estoque</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="c : ${req4}">
+                <td th:text="${c.idIngrediente}"></td>
+                <td th:text="${c.nome}"></td>
+                <td th:text="${c.valor}"></td>
+                <td th:text="${c.disponibilidade ? 'Sim' : 'Não'}"></td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>

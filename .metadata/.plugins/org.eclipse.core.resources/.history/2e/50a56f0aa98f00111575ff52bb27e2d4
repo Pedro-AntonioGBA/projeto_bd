@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastrar Ingrediente</title>
+    <link rel="stylesheet" href="css/estiloPaginaIndex.css">
+</head>
+<body>
+   
+        <h3>Seja bem-vindo!</h3>
+
+        <br /> <br />
+        <a href="/ingredientes" class="estiloBotaoLink">Listar Ingredientes</a>
+        &nbsp; &nbsp;
+        <a href="/ingredientes/novo" class="estiloBotaoLink">Cadastrar Ingredientes</a>
+        <br /> <br />
+		<a href="/relatorios" class="estiloBotaoLink">Ver Relatórios (Consultas SQL)</a>
+        <a href="/fornecedores" class="estiloBotaoLink">Listar Fornecedores</a>
+		<a href="/fornecedores/novo" class="estiloBotaoLink">Cadastrar Fornecedores</a>
+   
+</body>
+</html>

@@ -1,0 +1,20 @@
+package br.edu.ifpb.bd.projeto.dto;
+
+public class PratoIngredienteDTO {
+    private String receita;
+    private String ingrediente;
+    private Float valor;
+
+    public PratoIngredienteDTO(String receita, String ingrediente, Float valor) {
+        this.receita = receita;
+        this.ingrediente = ingrediente;
+        this.valor = valor;
+    }
+
+    public String getReceita() { return receita; }
+    public void setReceita(String receita) { this.receita = receita; }
+    public String getIngrediente() { return ingrediente; }
+    public void setIngrediente(String ingrediente) { this.ingrediente = ingrediente; }
+    public Float getValor() { return valor; }
+    public void setValor(Float valor) { this.valor = valor; }
+}

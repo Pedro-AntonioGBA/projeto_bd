@@ -1,0 +1,8 @@
+/home/vboxuser/Downloads/academico-web-main/src/main/java/br/edu/ifpb/bd/projeto/ProjetoApplication.java
+/home/vboxuser/Downloads/academico-web-main/src/main/java/br/edu/ifpb/bd/projeto/controller/AlunoController.java
+/home/vboxuser/Downloads/academico-web-main/src/main/java/br/edu/ifpb/bd/projeto/dao/AlunoDAO.java
+/home/vboxuser/Downloads/academico-web-main/src/main/java/br/edu/ifpb/bd/projeto/dao/CursoDAO.java
+/home/vboxuser/Downloads/academico-web-main/src/main/java/br/edu/ifpb/bd/projeto/dto/AlunoDTO.java
+/home/vboxuser/Downloads/academico-web-main/src/main/java/br/edu/ifpb/bd/projeto/model/Aluno.java
+/home/vboxuser/Downloads/academico-web-main/src/main/java/br/edu/ifpb/bd/projeto/model/Curso.java
+/home/vboxuser/Downloads/academico-web-main/src/main/java/br/edu/ifpb/bd/projeto/util/ConnectionFactory.java

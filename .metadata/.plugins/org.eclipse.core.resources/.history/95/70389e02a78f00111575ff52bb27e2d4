@@ -1,0 +1,16 @@
+package br.edu.ifpb.bd.projeto.dto;
+
+public class MesaArrecadacaoDTO {
+    private Integer idMesa;
+    private Float valorTotal;
+
+    public MesaArrecadacaoDTO(Integer idMesa, Float valorTotal) {
+        this.idMesa = idMesa;
+        this.valorTotal = valorTotal;
+    }
+
+    public Integer getIdMesa() { return idMesa; }
+    public void setIdMesa(Integer idMesa) { this.idMesa = idMesa; }
+    public Float getValorTotal() { return valorTotal; }
+    public void setValorTotal(Float valorTotal) { this.valorTotal = valorTotal; }
+}

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Ingrediente</title>
+    <link th:href="@{/css/estiloPaginaForm.css}" rel="stylesheet" />
+</head>
+<body>
+
+    <div class="container">
+        <h2>Edição de Fornecedor</h2>
+        
+        <!-- Action alterada para /ingredientes e objeto para ingrediente -->
+        <form th:action="@{/fornecedores}" th:object="${fornecedor}" method="post">
+            
+            <!-- Campo oculto referenciando o id do Ingrediente -->
+            <input type="hidden" th:field="*{id}" />
+
+            <div class="form-group">
+                <label for="cnpj">CNPJ</label>
+                <input type="text" id="cnpj" th:field="*{cnpj}">
+            </div>
+
+            <div class="form-group">
+                <label for="nome">Nome</label>
+                <input type="text" id="nome" th:field="*{nome}">
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Enviar">
+               
+                <!-- Botão cancelar retornando para a lista correta -->
+                <a href="/fornecedores">
+                    <input type="button" value="Cancelar">
+                </a>
+            </div>
+
+        </form>
+    </div>
+
+</body>
+</html>
