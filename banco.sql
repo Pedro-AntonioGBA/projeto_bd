@@ -111,3 +111,64 @@ create table funcionario_cliente(
 INSERT INTO fornecedores (cnpj, nome) VALUES 
 ('2312', 'Bom gosto'),
 ('3213123', 'Sadia');
+create table tel_fornecedor(
+    id_telefone serial primary key,
+    numero varchar(15),
+    id_fornecedor int not null,
+    FOREIGN KEY (id_fornecedor) REFERENCES fornecedores(id_fornecedor)
+);
+INSERT INTO tel_fornecedor(numero, id_fornecedor) values (83988740499, 1)
+
+INSERT INTO fornecedores (id_fornecedor, cnpj, nome) VALUES 
+(101, '12345678901234', 'Distribuidora Alimentos SA'),
+(102, '98765432109876', 'Hortifruti Frescor');
+
+INSERT INTO ingredientes (id_ingrediente, nome, valor, disponibilidade, id_fornecedor) VALUES 
+(101, 'Farinha de Trigo', 6.50, true, 101),
+(102, 'Açúcar', 4.00, true, 101),
+(103, 'Ovos', 12.00, true, 102),
+(104, 'Chocolate Belga', 85.00, true, 101), 
+(105, 'Fermento', 3.50, true, 101),
+(106, 'Morango', 15.00, true, 102);
+
+INSERT INTO pratos (id_prato, receita, valor, disponibilidade) VALUES 
+(101, 'Bolo de Chocolate', 45.00, true),
+(102, 'Torta de Morango', 55.00, true),
+(103, 'Bolo de Cenoura', 35.00, true);
+
+INSERT INTO ingredientes_prato (id_prato, id_ingrediente) VALUES 
+(101, 101), (101, 103), (101, 104),
+(102, 101), (102, 103), (102, 106);
+
+INSERT INTO funcoes (id_funcao, nome) VALUES 
+(101, 'Caixa'),
+(102, 'Garçom'),
+(103, 'Gerente');
+
+INSERT INTO funcionarios (id_funcionario, cpf, nome, id_funcao) VALUES 
+(101, '11111111111', 'João Silva', 101),
+(102, '22222222222', 'Maria Oliveira', 102),
+(103, '33333333333', 'Carlos Pereira Silva', 101);
+
+INSERT INTO mesas (id_mesa, lugares) VALUES 
+(101, 4), (102, 2), (103, 6), (104, 8);
+
+INSERT INTO pedidos (id_pedido, valor_pedido, id_mesa) VALUES 
+(101, 150.00, 101),
+(102, 85.50, 101),
+(103, 320.00, 103),
+(104, 45.00, 102);
+
+INSERT INTO pagamentos (forma_pagamento, data_pagamento, id_funcionario, id_pedido) VALUES 
+('Cartão de Crédito', '2026-10-01', 101, 101),
+('Dinheiro', '2026-10-01', 103, 102),
+('PIX', '2026-10-02', 101, 103);
+
+INSERT INTO clientes (id_cliente, cpf_cliente, nome) VALUES 
+(101, '44444444444', 'Ana Costa'),
+(102, '55555555555', 'Pedro Souza'),
+(103, '66666666666', 'Lucas Fernandes');
+
+INSERT INTO reservas (id_cliente, id_mesa) VALUES 
+(101, 101),
+(102, 103);
